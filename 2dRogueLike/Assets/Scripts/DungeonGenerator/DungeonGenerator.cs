@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
-	// The type of tile that will be laid in a specific position.
+	public enum PathingTileCost
+	{
+		Wall, Floor,
+	}
+
 	public enum TileType
 	{
 		Wall, Floor,
@@ -19,6 +23,7 @@ public class DungeonGenerator : MonoBehaviour
 	public GameObject[] innerWallTiles;                       // An array of wall tile prefabs.
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
 
+	private TileType[][] pathingTiles;                        // A jagged array of pathing tile types representing the board, like a grid, for use by the Pathing Algorithms.
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
 	private Room[] rooms;                                     // All the rooms that are created for this board.
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.

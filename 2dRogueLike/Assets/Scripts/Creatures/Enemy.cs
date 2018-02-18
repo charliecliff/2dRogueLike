@@ -30,6 +30,7 @@ public class Enemy : MovingObject
 	}
 
 
+	/*
 	//Override the AttemptMove function of MovingObject to include functionality needed for Enemy to skip turns.
 	//See comments in MovingObject for more on how base AttemptMove function works.
 	protected override void AttemptMove <T> (float xDir, float yDir)
@@ -48,7 +49,7 @@ public class Enemy : MovingObject
 		//Now that Enemy has moved, set skipMove to true to skip next move.
 		skipMove = true;
 	}
-
+	*/
 
 	//MoveEnemy is called by the GameManger each turn to tell each Enemy to try to move towards the player.
 	public void MoveEnemy ()
@@ -70,14 +71,15 @@ public class Enemy : MovingObject
 			xDir = target.position.x > transform.position.x ? 1 : -1;
 
 		//Call the AttemptMove function and pass in the generic parameter Player, because Enemy is moving and expecting to potentially encounter a Player
-		AttemptMove <Player> (xDir, yDir);
+		Move (xDir, yDir);
 	}
 
 
 	//OnCantMove is called if Enemy attempts to move into a space occupied by a Player, it overrides the OnCantMove function of MovingObject 
 	//and takes a generic parameter T which we use to pass in the component we expect to encounter, in this case Player
-	protected override void OnCantMove <T> (T component)
+	protected override void OnHit (RaycastHit2D hitObject)
 	{
+		/*
 		//Declare hitPlayer and set it to equal the encountered component.
 		Player hitPlayer = component as Player;
 
@@ -87,5 +89,6 @@ public class Enemy : MovingObject
 		//Set the attack trigger of animator to trigger Enemy attack animation.
 		animator.SetTrigger ("Enemy_Attack_Trigger");
 		SoundHandler.instance.RandomizeSfx(enemyAttack1, enemyAttack2);
+		*/
 	}
 }

@@ -126,37 +126,10 @@ public class Player : Creature
 		base.Start ();
 	}
 
-	/*
-	protected override void AttemptMove <T> (float xDir, float yDir)
-	{ 
-		//Every time player moves, subtract from food points total.
-		food--;
-		foodText.text = "Food; " + food;
 
-		//Call the AttemptMove method of the base class, passing in the component T (in this case Wall) and x and y direction to move.
-		base.AttemptMove <T> ((float)xDir, (float)yDir);
-
-		//Hit allows us to reference the result of the Linecast done in Move.
-		RaycastHit2D hit;
-
-		//If Move returns true, meaning Player was able to move into an empty space.
-		if (Move (xDir, yDir, out hit)) 
-		{
-			//Call RandomizeSfx of SoundManager to play the move sound, passing in two audio clips to choose from.
-			SoundHandler.instance.RandomizeSfx(moveSound1, moveSound2);
-		}
-
-		//Since the player has moved and lost food points, check if the game has ended.
-		CheckIfGameOver ();
-
-		//Set the playersTurn boolean of GameManager to false now that players turn is over.
-		GameHandler.instance.playersTurn = false;
-	}
-	*/
-
-	protected override void OnCantMove <T> (T component)
+	protected override void OnHit (RaycastHit2D hitObject)
 	{
-		StopMoving ();
+		SetMoving (false);
 	}
 		
 
@@ -184,16 +157,16 @@ public class Player : Creature
 		switch (currentMoveButton)
 		{
 		case MovementButton.up:
-			base.AttemptMoveTo <Wall> (currentMoveStartCoordinate.x, currentMoveStartCoordinate.y + currentMoveDistance);
+			base.AttemptMoveTo (currentMoveStartCoordinate.x, currentMoveStartCoordinate.y + currentMoveDistance);
 			break;
 		case MovementButton.down:
-			base.AttemptMoveTo <Wall> (currentMoveStartCoordinate.x, currentMoveStartCoordinate.y - currentMoveDistance);
+			base.AttemptMoveTo (currentMoveStartCoordinate.x, currentMoveStartCoordinate.y - currentMoveDistance);
 			break;
 		case MovementButton.right:
-			base.AttemptMoveTo <Wall> (currentMoveStartCoordinate.x + currentMoveDistance, currentMoveStartCoordinate.y);
+			base.AttemptMoveTo (currentMoveStartCoordinate.x + currentMoveDistance, currentMoveStartCoordinate.y);
 			break;
 		case MovementButton.left:
-			base.AttemptMoveTo <Wall> (currentMoveStartCoordinate.x - currentMoveDistance, currentMoveStartCoordinate.y);
+			base.AttemptMoveTo (currentMoveStartCoordinate.x - currentMoveDistance, currentMoveStartCoordinate.y);
 			break;
 		}
 	}
@@ -226,16 +199,16 @@ public class Player : Creature
 		switch (currentMoveButton)
 		{
 		case MovementButton.up:
-			base.AttemptMoveTo <Wall> (currentLocation.x, Mathf.Ceil(currentLocation.y));
+			base.MoveTo (currentLocation.x, Mathf.Ceil(currentLocation.y));
 			break;
 		case MovementButton.down:
-			base.AttemptMoveTo <Wall> (currentLocation.x, Mathf.Floor(currentLocation.y));
+			base.MoveTo (currentLocation.x, Mathf.Floor(currentLocation.y));
 			break;
 		case MovementButton.right:
-			base.AttemptMoveTo <Wall> (Mathf.Ceil(currentLocation.x), currentLocation.y);
+			base.MoveTo (Mathf.Ceil(currentLocation.x), currentLocation.y);
 			break;
 		case MovementButton.left:
-			base.AttemptMoveTo <Wall> (Mathf.Floor(currentLocation.x), currentLocation.y);
+			base.MoveTo (Mathf.Floor(currentLocation.x), currentLocation.y);
 			break;
 		}
 
