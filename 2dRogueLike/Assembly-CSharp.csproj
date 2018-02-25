@@ -57,9 +57,13 @@
      <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
      <Compile Include="Assets\Scripts\Creatures\Enemy.cs" />
      <Compile Include="Assets\Scripts\Creatures\MovingObject.cs" />
+     <Compile Include="Assets\Scripts\Creatures\PatrollingCreature.cs" />
      <Compile Include="Assets\Scripts\Creatures\Player.cs" />
      <Compile Include="Assets\Scripts\DungeonGenerator\Corridor.cs" />
+     <Compile Include="Assets\Scripts\DungeonGenerator\DungeonConstants.cs" />
      <Compile Include="Assets\Scripts\DungeonGenerator\DungeonGenerator.cs" />
+     <Compile Include="Assets\Scripts\DungeonGenerator\PopulatedDungeonGenerator.cs" />
+     <Compile Include="Assets\Scripts\DungeonGenerator\PopulatedRoom.cs" />
      <Compile Include="Assets\Scripts\DungeonGenerator\Room.cs" />
      <Compile Include="Assets\Scripts\GameHandler.cs" />
      <Compile Include="Assets\Scripts\IntRange.cs" />

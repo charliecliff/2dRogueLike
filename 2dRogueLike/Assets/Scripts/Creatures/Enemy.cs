@@ -2,7 +2,7 @@
 using System.Collections;
 
 //Enemy inherits from MovingObject, our base class for objects that can move, Player also inherits from this.
-public class Enemy : MovingObject
+public class Enemy : PatrollingCreature
 {
 	private Transform target;                           //Transform to attempt to move toward each turn.
 	private bool skipMove;                              //Boolean to determine whether or not enemy should skip a turn or move this turn.
@@ -12,7 +12,7 @@ public class Enemy : MovingObject
 	public AudioClip enemyAttack1;
 	public AudioClip enemyAttack2;
 
-	//Start overrides the virtual Start function of the base class.
+
 	protected override void Start ()
 	{
 		//Register this enemy with our instance of GameManager by adding it to a list of Enemy objects. 
@@ -25,7 +25,6 @@ public class Enemy : MovingObject
 		//Find the Player GameObject using it's tag and store a reference to its transform component.
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
 
-		//Call the start function of our base class MovingObject.
 		base.Start ();
 	}
 
@@ -51,6 +50,7 @@ public class Enemy : MovingObject
 	}
 	*/
 
+
 	//MoveEnemy is called by the GameManger each turn to tell each Enemy to try to move towards the player.
 	public void MoveEnemy ()
 	{
@@ -67,6 +67,7 @@ public class Enemy : MovingObject
 
 		//If the difference in positions is not approximately zero (Epsilon) do the following:
 		else
+			
 			//Check if target x position is greater than enemy's x position, if so set x direction to 1 (move right), if not set to -1 (move left).
 			xDir = target.position.x > transform.position.x ? 1 : -1;
 

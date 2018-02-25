@@ -2,6 +2,7 @@
 
 public class Room
 {
+	
 	public int xPos;                      // The x coordinate of the lower left tile of the room.
 	public int yPos;                      // The y coordinate of the lower left tile of the room.
 	public int roomWidth;                 // How many tiles wide the room is.
@@ -10,7 +11,7 @@ public class Room
 
 
 	// This is used for the first room.  It does not have a Corridor parameter since there are no corridors yet.
-	public void SetupRoom (IntRange widthRange, IntRange heightRange, int columns, int rows)
+	public void SetupFirstRoom (IntRange widthRange, IntRange heightRange, int columns, int rows)
 	{
 		// Set a random width and height.
 		roomWidth = widthRange.Random;

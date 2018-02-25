@@ -22,6 +22,7 @@ public class GameHandler : MonoBehaviour
 	public int playerFoodPoints = 100;
 	[HideInInspector] public bool playersTurn = true;
 
+
 	void Awake () 
 	{
 		if (instance == null)
@@ -36,6 +37,7 @@ public class GameHandler : MonoBehaviour
 		InitGame ();
 	}
 
+
 	void InitGame ()
 	{
 		doingSetup = true;
@@ -49,24 +51,28 @@ public class GameHandler : MonoBehaviour
 		enemies.Clear ();
 	}
 
+
 	void HideLevelImage ()
 	{
 		levelImage.SetActive(false);
 		doingSetup = false;
 	}
 
+
 	//Update is called every frame.
 	void Update()
 	{
 		//Check that playersTurn or enemiesMoving or doingSetup are not currently true.
-		if(playersTurn || enemiesMoving || doingSetup)
-
+		if (enemiesMoving || doingSetup) {
+			
 			//If any of these are true, return and do not start MoveEnemies.
 			return;
+		}
 
 		//Start moving enemies.
 		StartCoroutine (MoveEnemies ());
 	}
+
 
 	//Call this to add the passed in Enemy to the List of Enemy objects.
 	public void AddEnemyToList(Enemy script)
@@ -75,6 +81,7 @@ public class GameHandler : MonoBehaviour
 		enemies.Add(script);
 	}
 
+
 	public void GameOver ()
 	{
 		levelText.text = "After " + level + " days, you starved";
@@ -82,6 +89,7 @@ public class GameHandler : MonoBehaviour
 
 		enabled = false;
 	}
+
 
 	IEnumerator MoveEnemies()
 	{
@@ -102,7 +110,7 @@ public class GameHandler : MonoBehaviour
 		for (int i = 0; i < enemies.Count; i++)
 		{
 			//Call the MoveEnemy function of Enemy at index i in the enemies List.
-			enemies[i].MoveEnemy ();
+			enemies[i].Move ();
 
 			//Wait for Enemy's moveTime before moving next Enemy, 
 			yield return new WaitForSeconds(enemies[i].moveTime);
@@ -114,6 +122,7 @@ public class GameHandler : MonoBehaviour
 		enemiesMoving = false;
 	}
 
+
 	//This is called each time a scene is loaded.
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
@@ -124,11 +133,13 @@ public class GameHandler : MonoBehaviour
 		InitGame();
 	}
 
+
 	void OnEnable()
 	{
 		//Tell our ‘OnLevelFinishedLoading’ function to start listening for a scene change event as soon as this script is enabled.
 		SceneManager.sceneLoaded += OnLevelFinishedLoading;
 	}
+
 
 	void OnDisable()
 	{

@@ -35,6 +35,7 @@ public class BoardHandler : MonoBehaviour
 	private Transform boardHolder;
 	private List <Vector3> gridPositions = new List<Vector3> ();
 
+
 	void InitializeList ()
 	{
 		gridPositions.Clear ();
@@ -47,6 +48,7 @@ public class BoardHandler : MonoBehaviour
 			}
 		}
 	}
+
 
 	void BoardSetup ()
 	{
@@ -68,6 +70,7 @@ public class BoardHandler : MonoBehaviour
 		}
 	}
 
+
 	Vector3 RandomPosition ()
 	{
 		int randomIndex = Random.Range (0, gridPositions.Count);
@@ -78,6 +81,7 @@ public class BoardHandler : MonoBehaviour
 
 		return randomPosition;
 	}
+
 
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
 	{
@@ -90,6 +94,7 @@ public class BoardHandler : MonoBehaviour
 			Instantiate (tileChoice, randomPosition, Quaternion.identity);
 		}
 	}
+
 
 	public void SetupScene (int level)
 	{
